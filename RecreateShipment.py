@@ -5,6 +5,9 @@ Takes information from a shipment JSON (stored in seperate file ShipmentID.py) a
 import easypost, json
 import ShipmentID, Key
 
+# easypost.api_key = Key.production_api_key
+easypost.api_key = Key.test_api_key
+
 ship = ShipmentID.ship
 
 # # Extract all of the information
@@ -130,7 +133,7 @@ try:
     is_return = ship['is_return'],
     reference = reference,
     parcel = parcel,
-    carrier_accounts = [Key.DHLECS],
+    carrier_accounts = [Key.UPS],
     customs_info = customs_info,
     options = ship['options'],
   )
@@ -145,5 +148,5 @@ except easypost.Error as e:
 
 # From here you can do things like:
 
-# print(shipment)
+print(shipment)
 # print(shipment['rates'])
